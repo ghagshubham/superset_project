@@ -19,3 +19,11 @@ docker-compose.override.yml
 
 # Misc
 *.zip
+
+#virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+superset-venv/
