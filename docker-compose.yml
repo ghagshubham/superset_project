@@ -20,14 +20,18 @@ services:
   superset:
     build: .
     container_name: superset
-    # env_file: .env
+    # env_file removed, we use Railway environment variables
     ports:
-      - "${PORT}:8088"
+      - "${PORT}:8088"  # Railway dynamic port
     depends_on:
       - db
       - redis
     volumes:
       - superset_home:/app/superset_home
+    command: >
+      sh -c "superset db upgrade &&
+             superset init &&
+             superset run -p $PORT --with-threads --reload --debugger"
 
 volumes:
   superset_db_data:
