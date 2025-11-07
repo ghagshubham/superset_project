@@ -1,38 +1,18 @@
 version: "3.8"
 
 services:
-  db:
-    image: postgres:15
-    container_name: superset_db
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    volumes:
-      - superset_db_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:6-alpine
-    container_name: superset_redis
-    ports:
-      - "6379:6379"
-
   superset:
     build: .
     container_name: superset
-    # env_file removed, we use Railway environment variables
     ports:
       - "${PORT}:8088"  # Railway dynamic port
-    depends_on:
-      - db
-      - redis
     volumes:
       - superset_home:/app/superset_home
     command: >
       sh -c "superset db upgrade &&
              superset init &&
+             superset fab create-admin --username jinal --firstname Jinal --lastname Swarnakar --email jinal.swarnakar@fiftyfivetech.io --password 123 --skip-if-exists &&
              superset run -p $PORT --with-threads --reload --debugger"
 
 volumes:
-  superset_db_data:
   superset_home:
