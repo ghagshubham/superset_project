@@ -31,4 +31,4 @@ RUN superset init
 EXPOSE 8080
 
 # Start Superset
-CMD ["superset", "run", "-h", "0.0.0.0", "-p", "8080", "--with-threads", "--reload"]
+CMD superset run -h 0.0.0.0 -p ${PORT:-8080} --with-threads --reload
