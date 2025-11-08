@@ -1,8 +1,7 @@
 [build]
-builder = "dockerfile"
-dockerfilePath = "Dockerfile"
+builder = "Nixpacks"  # or "buildpack"
 
 [deploy]
-startCommand = "/app/start.sh"
+startCommand = "bash start.sh"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 10
