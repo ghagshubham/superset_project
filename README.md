@@ -1,11 +1,12 @@
-# Apache Superset on Railway
+# Apache Superset Deployment (Docker)
 
-This repo deploys Apache Superset fully on Railway without Docker.
+This setup runs Apache Superset in a container, ready to deploy on **Render**, **Railway**, or **any cloud/VPS**.
 
-### Steps to deploy
-1. Add a PostgreSQL service in your Railway project.
-2. Copy the `postgresql` connection URL (from your DB service).
-3. Deploy this repo.
-4. Once running, open Superset → Settings → Database Connections.
-5. Add your internal Railway Postgres connection string, e.g.:
+---
 
+### 🛠️ Setup Locally
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/yourusername/superset-app.git
+   cd superset-app
