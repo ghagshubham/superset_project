@@ -15,7 +15,14 @@ SECRET_KEY = os.environ.get(
 # Server configuration
 SUPERSET_WEBSERVER_PORT = int(os.environ.get("PORT", 8088))
 
-DEFAULT_TIME_FILTER = "NO_TIME_RANGE"
+# Enable feature flags
+FEATURE_FLAGS = {
+    "DASHBOARD_NATIVE_FILTERS": True,
+    "DASHBOARD_CROSS_FILTERS": True,
+    "DASHBOARD_NATIVE_FILTERS_SET": True,
+    "ENABLE_TEMPLATE_PROCESSING": True,
+    "DASHBOARD_FILTERS_EXPERIMENTAL": True,
+}
 
 # CORS configuration
 ENABLE_CORS = True
@@ -27,20 +34,25 @@ CORS_OPTIONS = {
 }
 
 # Prevent users from disabling SQL Lab
-SQLLAB_CTAS_NO_LIMIT = True,
-HORIZONTAL_FILTER_BAR: True
+SQLLAB_CTAS_NO_LIMIT = True
 
-# Enable feature flags
-FEATURE_FLAGS = {
-    "DASHBOARD_NATIVE_FILTERS": True,
-    "DASHBOARD_CROSS_FILTERS": True,
-    "DASHBOARD_NATIVE_FILTERS_SET": True,
-    "DASHBOARD_NATIVE_FILTERS_HORIZONTAL": True,  # 👈 enables horizontal filters
-}
 # Configure metadata database connection pool
 SQLALCHEMY_ENGINE_OPTIONS = {
     "pool_pre_ping": True,
     "pool_recycle": 3600,
 }
 
-
+# Time grain configurations for time range filters
+TIME_GRAIN_ADDONS = {
+    'PT1S': '1 second',
+    'PT1M': '1 minute',
+    'PT5M': '5 minutes',
+    'PT10M': '10 minutes',
+    'PT15M': '15 minutes',
+    'PT30M': '30 minutes',
+    'PT1H': '1 hour',
+    'P1D': '1 day',
+    'P1W': '1 week',
+    'P1M': '1 month',
+    'P1Y': '1 year',
+}
