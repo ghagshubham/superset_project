@@ -15,6 +15,8 @@ SECRET_KEY = os.environ.get(
 # Server configuration
 SUPERSET_WEBSERVER_PORT = int(os.environ.get("PORT", 8088))
 
+DEFAULT_TIME_FILTER = "NO_TIME_RANGE"
+
 # CORS configuration
 ENABLE_CORS = True
 CORS_OPTIONS = {
@@ -25,7 +27,8 @@ CORS_OPTIONS = {
 }
 
 # Prevent users from disabling SQL Lab
-SQLLAB_CTAS_NO_LIMIT = True
+SQLLAB_CTAS_NO_LIMIT = True,
+HORIZONTAL_FILTER_BAR: True
 
 # Enable feature flags
 FEATURE_FLAGS = {
@@ -39,3 +42,5 @@ SQLALCHEMY_ENGINE_OPTIONS = {
     "pool_pre_ping": True,
     "pool_recycle": 3600,
 }
+
+
