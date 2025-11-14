@@ -1,4 +1,5 @@
 import os
+from flask_appbuilder.security.manager import AUTH_DB
 
 # Database configuration
 SQLALCHEMY_DATABASE_URI = os.environ.get(
@@ -15,13 +16,30 @@ SECRET_KEY = os.environ.get(
 # Server configuration
 SUPERSET_WEBSERVER_PORT = int(os.environ.get("PORT", 8088))
 
-# Enable feature flags
+# Authentication type
+AUTH_TYPE = AUTH_DB
+
+# Enable all feature flags for filters
 FEATURE_FLAGS = {
+    # Native Filters (required for horizontal filters)
     "DASHBOARD_NATIVE_FILTERS": True,
-    "DASHBOARD_CROSS_FILTERS": True,
     "DASHBOARD_NATIVE_FILTERS_SET": True,
+    "DASHBOARD_CROSS_FILTERS": True,
+    
+    # Template processing (required for time filters)
     "ENABLE_TEMPLATE_PROCESSING": True,
+    "ENABLE_TEMPLATE_REMOVE_FILTERS": True,
+    
+    # Additional filter features
     "DASHBOARD_FILTERS_EXPERIMENTAL": True,
+    "GLOBAL_ASYNC_QUERIES": True,
+    
+    # Enable all time-related features
+    "ENABLE_JAVASCRIPT_CONTROLS": True,
+    "ENABLE_EXPLORE_JSON_CSRF_PROTECTION": False,
+    
+    # Horizontal layout
+    "HORIZONTAL_FILTER_BAR": True,
 }
 
 # CORS configuration
@@ -56,3 +74,10 @@ TIME_GRAIN_ADDONS = {
     'P1M': '1 month',
     'P1Y': '1 year',
 }
+
+# Enable time range filter
+ENABLE_TIME_RANGE_FILTER = True
+
+# Row limit for SQL Lab
+ROW_LIMIT = 50000
+SQL_MAX_ROW = 100000
