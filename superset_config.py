@@ -6,10 +6,16 @@ SQLALCHEMY_DATABASE_URI = os.environ.get(
     "postgresql://postgres:ySglnskQzWBsOziiNiihRusbmXiLyWMJ@metro.proxy.rlwy.net:38035/railway?sslmode=require"
 )
 
-# Secret key for session management
+# Secret key for session management (must be at least 32 bytes)
 SECRET_KEY = os.environ.get(
     "SECRET_KEY", 
     "99b0V3oCt99AzUVqNDTrd38cumra2Fs3ocHIBQ-nUpg"
+)
+
+# JWT Secret for async queries (REQUIRED when GLOBAL_ASYNC_QUERIES is enabled)
+GLOBAL_ASYNC_QUERIES_JWT_SECRET = os.environ.get(
+    "GLOBAL_ASYNC_QUERIES_JWT_SECRET",
+    "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2"
 )
 
 # Server configuration
@@ -70,4 +76,3 @@ TIME_GRAIN_ADDONS = {
     'P1M': '1 month',
     'P1Y': '1 year',
 }
-
