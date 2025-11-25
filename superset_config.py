@@ -12,6 +12,12 @@ SECRET_KEY = os.environ.get(
     "99b0V3oCt99AzUVqNDTrd38cumra2Fs3ocHIBQ-nUpg"
 )
 
+# JWT Secret Key for async queries (at least 32 bytes)
+SECRET_KEY_FOR_COOKIE_ENCRYPTION = os.environ.get(
+    "SECRET_KEY_FOR_COOKIE_ENCRYPTION",
+    "gK8vN2pL9mQ4rT7wX6yZ3aB5cD1eF0hJ8iM4nO6pR2sU9vW7xY3zA1bC5dE8fG2h"
+)
+
 # Server configuration
 SUPERSET_WEBSERVER_PORT = int(os.environ.get("PORT", 8088))
 
@@ -70,4 +76,3 @@ TIME_GRAIN_ADDONS = {
     'P1M': '1 month',
     'P1Y': '1 year',
 }
-
